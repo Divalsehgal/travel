@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+.grid-container {
+  height: 100vh;
+  grid-template-rows: auto;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-rows: auto 1fr auto;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
