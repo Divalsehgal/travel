@@ -15,10 +15,10 @@ const useAuth = () => {
     }));
   }, [localStorage.getItem("loggedin")]);
 
-  const login = async (user) => {
+  const login = async (user:any) => {
     try {
       if (user) {
-        const response = await signInWithEmailAndPassword(
+        const response:any = await signInWithEmailAndPassword(
           auth,
           user.email,
           user.password

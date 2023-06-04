@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 
 type Option = {
@@ -19,7 +18,7 @@ type Props = {
   onSubmit: (data: FormData) => void;
 };
 
-const Travelform: React.FC<Props> = ({ onSubmit }) => {
+const Travelform: any= ({ onSubmit }:Props) => {
   const areasOptions: Option[] = [
     { value: 'asia', label: 'Asia' },
     { value: 'europe', label: 'Europe' },

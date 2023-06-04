@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
@@ -19,9 +19,9 @@ function Dashboard({}: Props) {
   const homeUrls = ["/", "/dashboard"];
 
   const [showthankyou, setShowThankyou] = useState(false);
-  const { register, handleSubmit, reset } = useForm<FormData>();
-  let timeout;
-  const onSubmit = async (data: FormData) => {
+  const { register, handleSubmit, reset } = useForm<any>();
+  let timeout:any=0;
+  const onSubmit = async (data: any) => {
     data.id = uuid()
     const travelEntry = doc(collection(db, "travelData"));
     try {

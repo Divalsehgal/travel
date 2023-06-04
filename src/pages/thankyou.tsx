@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ThankYouCard() {
   return (
     <div className="thank-you-card bg-white rounded shadow text-center p-8 m-10">

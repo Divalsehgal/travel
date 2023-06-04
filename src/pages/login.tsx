@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 interface User {
   email: string;
   password: string;
-  role: string;
 }
 
 const LoginForm = () => {
@@ -19,17 +19,7 @@ const LoginForm = () => {
     password: "123456",
   });
 
-  const signup = (e) => {
-    e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(user.email, user.password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          displayName: userName,
-        });
-      })
-      .catch((error) => alert(error.message));
-  };
+
 
   useEffect(() => {
     if (authState.loggedIn) {
@@ -138,16 +128,28 @@ const SignUpPage: React.FC<{
   toggleSignIn: () => void;
   showSignedIn: boolean;
 }> = ({ toggleSignIn, showSignedIn }) => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform sign-up logic here
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+
+    const signup = async() => {
+      e.preventDefault();
+      try {
+       await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      } catch (error) {}
+    };
+    signup()
+    setEmail("");
+    setPassword("")
+
+
   };
 
   return (
@@ -161,26 +163,6 @@ const SignUpPage: React.FC<{
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-gradient-to-b from-[#232526] to-[#3d4651] py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSignUp}>
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-white"
-              >
-                Name
-              </label>
-              <div className="mt-1">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  required
-                  className=" text-white appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400  sm:text-sm"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-            </div>
 
             <div>
               <label

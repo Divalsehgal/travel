@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/uuid": "^9.0.1",
     "firebase": "^9.22.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.44.3",
     "react-router-dom": "^6.11.2",
+    "save-dev": "^0.0.1-security",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
