@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 const NavbarLinks: any = [
   { title: "admin", to: "/dashboard/admin", protected: true },
   { title: "about", to: "/about", protected: false },
@@ -12,15 +12,14 @@ function Navbar(props: any) {
   const { authState, logout } = props;
   const [cuser, setCuser] = useState<any>("");
   const auth = getAuth();
-  const user = auth.currentUser;
 
-  useEffect(() => {
+auth.onAuthStateChanged((user) => {
     if (user) {
-      setCuser(user?.email);
+   setCuser(user?.email);
     } else {
-      setCuser("");
+    setCuser("");
     }
-  }, []);
+  });
 
   const isLoggedIn = authState?.loggedIn || false;
   const renderNavLinks = (): JSX.Element[] =>
